@@ -1,0 +1,97 @@
+
+<project name="JdbcLab13">
+
+    <property name="lib.dir" location="lib"/>
+    <property name="out.dir" location="out"/>
+    <property name="out.src.dir" location="out/main"/>
+    <property name="out.test.dir" location="out/test"/>
+    <property name="src.dir" location="src/main"/>
+    <property name="test.dir" location="test"/>
+    <property name="src.resources.dir" location="src/main/resource"/>
+    <property name="test.resources.dir" location="src/main/resource"/>
+
+    <property name="data.dir" location="data"/>
+    <property name="data.user.dir" location="${data.dir}/user"/>
+    <property name="data.role.dir" location="${data.dir}/role"/>
+    <property name="jar.dir" location="jar" />
+
+    <property name="jdbc.driver" value="org.h2.Driver"/>
+    <property name="jdbc.url" value="jdbc:h2:~/h2B"/>
+    <property name="jdbc.user" value="root"/>
+    <property name="jdbc.password" value="root"/>
+
+    <path id="lib.path">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <path id="test.path">
+        <pathelement location="${out.test.dir}"/>
+        <pathelement location="${out.src.dir}"/>
+        <path refid="lib.path" />
+    </path>
+
+    <path id="dbunit">
+        <fileset dir="${lib.dir}">
+            <include name="dbunit-2.4.9.jar"/>
+            <include name="slf4j-api-1.7.25.jar"/>
+            <include name="slf4j-log4j12-1.7.25.jar"/>
+            <include name="log4j-1.2.16.jar"/>
+            <include name="h2-1.4.197.jar"/>
+        </fileset>
+    </path>
+
+    <taskdef name="dbunit" classpathref="dbunit" classname="org.dbunit.ant.DbUnitTask"/>
+
+    <target name="clean">
+        <delete dir="${jar.dir}"/>
+        <delete dir="${out.dir}"/>
+    </target>
+
+    <target name="compile">
+        <copy todir="${out.src.dir}">
+            <fileset dir="${test.resources.dir}"/>
+        </copy>
+        <mkdir dir="${out.src.dir}"/>
+        <javac srcdir="${src.dir}"
+               destdir="${out.src.dir}"
+               debug="true"
+               includeantruntime="false">
+            <classpath>
+                <path refid="lib.path"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="testcompile" depends="compile">
+        <mkdir dir="${out.test.dir}"/>
+        <copy todir="${out.test.dir}">
+            <fileset dir="${test.resources.dir}"/>
+        </copy>
+
+        <javac srcdir="${test.dir}"
+               destdir="${out.test.dir}"
+               debug="true"
+               includeantruntime="false">
+            <classpath>
+                <path refid="test.path"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="test" depends="testcompile">
+        <junit printsummary="yes" fork="yes" haltonfailure="yes">
+            <classpath refid="test.path"/>
+            <formatter type="brief" usefile="false"/>
+            <batchtest fork="yes" todir="${jar.dir}">
+                <fileset dir="${out.test.dir}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="jar" depends="clean, test">
+        <jar destfile="jar/${ant.project.name}.jar" basedir="${out.dir}"/>
+    </target>
+
+</project>

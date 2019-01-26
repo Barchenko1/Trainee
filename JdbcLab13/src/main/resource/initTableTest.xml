@@ -1,0 +1,8 @@
+<dataset>
+
+    <role ROLEID="1" name="ADMIN" />
+    <role ROLEID="2" name="USER" />
+
+    <USER USERID="1" LOGIN="Tanya" PASSWORD="pass" EMAIL="barchenko@gmail.com" FIRSTNAME="Tanya" LASTNAME="Barchenko" BIRTHDAY="1999-01-09" ROLEID="1"/>
+    <USER USERID="2" LOGIN="Artas" PASSWORD="pass" EMAIL="lorderon@mail.ua" FIRSTNAME="Pasha" LASTNAME="Barchenko" BIRTHDAY="1996-04-27" ROLEID="2"/>
+</dataset>
