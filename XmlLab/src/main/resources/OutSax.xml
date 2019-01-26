@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<class>
+<student>
+<firstname>dinkar</firstname>
+
+<nickname>dinkar</nickname>
+</student>
+
+<student>
+<firstname>jasvir</firstname>
+
+<nickname>jazz</nickname>
+</student>
+
+<student>
+<firstname>Vaneet</firstname>
+
+<nickname>vinni</nickname>
+</student>
+</class>

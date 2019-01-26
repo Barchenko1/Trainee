@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+
+    <package name="basicstruts2" extends="struts-default">
+
+        <action name="/*" class="com.nixsolutions.barchenko.action.LogAction" method="execute">
+            <result name="success">/WEB-INF/pages/login.jsp</result>
+        </action>
+        <action name="logout" class="com.nixsolutions.barchenko.action.LogAction" method="logout">
+            <result name="success">/WEB-INF/pages/login.jsp</result>
+        </action>
+        <action name="enter" class="com.nixsolutions.barchenko.action.LogAction" method="login">
+            <result name="admin">/WEB-INF/pages/admin.jsp</result>
+            <result name="user">/WEB-INF/pages/user.jsp</result>
+            <result name="login">/WEB-INF/pages/login.jsp</result>
+        </action>
+        <action name="admin" class="com.nixsolutions.barchenko.action.AdminAction" method="execute">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
+        <action name="user" class="com.nixsolutions.barchenko.action.UserAction" method="execute">
+            <result name="success">/WEB-INF/pages/user.jsp</result>
+        </action>
+        <action name="registration" class="com.nixsolutions.barchenko.action.RegistrationAction" method="execute">
+            <result name="success">/WEB-INF/pages/registration.jsp</result>
+        </action>
+        <action name="delete" class="com.nixsolutions.barchenko.action.AdminAction" method="deleteGet">
+            <result name="success">/WEB-INF/pages/admin.jsp</result>
+        </action>
+        <action name="edit" class="com.nixsolutions.barchenko.action.AdminAction" method="editGet">
+            <result name="success">/WEB-INF/pages/edit.jsp</result>
+        </action>
+        <action name="create" class="com.nixsolutions.barchenko.action.AdminAction" method="createdGet">
+            <result name="success">/WEB-INF/pages/create.jsp</result>
+        </action>
+
+    </package>
+
+</struts>
+
