@@ -1,0 +1,78 @@
+<div class="col-md-4 user-container">
+  <h2 class="text-center">Add User</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="login">Login:</label>
+      <input type="text" formControlName="login" placeholder="Login" name="login" class="form-control" id="login">
+      <div class="error-message"
+           *ngIf="addForm.get('login').errors && addForm.get('login').touched">
+        Your login is incorrect
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password" placeholder="Password" name="password" class="form-control" id="password">
+      <div class="error-message"
+           *ngIf="addForm.get('password').errors && addForm.get('password').touched">
+        Your password is incorrect
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="passwordAgain">Password Again:</label>
+      <input type="password" formControlName="passwordAgain" placeholder="Password Again" name="passwordAgain" class="form-control" id="passwordAgain">
+      <div class="error-message"
+           *ngIf="addForm.get('passwordAgain').errors && addForm.get('passwordAgain').touched">
+        Your password is incorrect
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input formControlName="firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+      <div class="error-message"
+           *ngIf="addForm.get('firstName').errors && addForm.get('firstName').touched">
+        Your first name is incorrect
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input formControlName="lastName" placeholder="Last name" name="lastName" class="form-control" id="lastName">
+      <div class="error-message"
+           *ngIf="addForm.get('lastName').errors && addForm.get('lastName').touched">
+        Your last name is incorrect
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+      <div class="error-message"
+           *ngIf="addForm.get('email').errors && addForm.get('email').touched">
+        Your email is incorrect
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="birthday">Birthday:</label>
+      <input type="date" formControlName="birthday" placeholder="Birthday" name="birthday" class="form-control" id="birthday">
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select [(ngModel)]="selectedRole" formControlName="role" id="role" name="role">
+        <option [ngValue]="item" *ngFor="let item of roles" >{{item.name}}</option>
+      </select>
+    </div>
+
+    <p><button class="btn btn-success" method="post" type="submit" name="Submit" [disabled]="(addForm.get('login').errors && addForm.get('login').touched)
+    || (addForm.get('password').errors && addForm.get('password').touched)
+    || (addForm.get('passwordAgain').errors && addForm.get('passwordAgain') || (addForm.get('password').value) !== (addForm.get('passwordAgain')).value)
+    || (addForm.get('firstName').errors && addForm.get('firstName').touched)
+    || (addForm.get('lastName').errors && addForm.get('lastName').touched)
+    || (addForm.get('email').errors && addForm.get('email').touched)">OK</button> <button (click)="cansel()" class="btn btn-success" aria-pressed="true">Cancel</button></p>
+  </form>
+
+</div>
