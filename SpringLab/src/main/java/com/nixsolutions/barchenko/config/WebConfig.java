@@ -18,10 +18,10 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({
-        "com.nixsolutions.barchenko.dao.impl, "
-                + "com.nixsolutions.barchenko.entity, "
-                + "com.nixsolutions.barchenko.service.impl, "
-                + "com.nixsolutions.barchenko.controller" })
+        "com.nixsolutions.barchenko.dao.impl",
+        "com.nixsolutions.barchenko.entity",
+        "com.nixsolutions.barchenko.service.impl",
+        "com.nixsolutions.barchenko.controller" })
 public class WebConfig implements WebMvcConfigurer {
 
     @Override public void addResourceHandlers(
@@ -54,7 +54,7 @@ public class WebConfig implements WebMvcConfigurer {
     public BasicDataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:~/h2B");
+        dataSource.setUrl("jdbc:h2:~/h2B4");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         return dataSource;

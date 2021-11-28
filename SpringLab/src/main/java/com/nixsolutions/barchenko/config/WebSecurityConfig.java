@@ -12,14 +12,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/", "/login", "/registration")
-                .permitAll()
-                .antMatchers("/edit", "/admin", "/edit/*", "/create", "/remove")
-                .hasAuthority("ADMIN").antMatchers("/user").hasAuthority("USER")
-                .and().formLogin().loginPage("/login")
-                .defaultSuccessUrl("/enter").usernameParameter("login")
-                .passwordParameter("password").and().logout()
-                .logoutUrl("/logout").logoutSuccessUrl("/?logout=true")
+                    .antMatchers("/", "/login", "/registration").permitAll()
+                    .antMatchers("/edit", "/admin", "/edit/*", "/create", "/remove").hasAuthority("ADMIN")
+                    .antMatchers("/user").hasAuthority("USER")
+                .and()
+                    .formLogin()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/enter")
+                    .usernameParameter("login")
+                    .passwordParameter("password")
+                .and()
+                    .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/?logout=true")
                 .permitAll();
 
     }
